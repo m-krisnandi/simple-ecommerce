@@ -23,6 +23,7 @@ class ProductTableSeeder extends Seeder
         $products = [
             [
                 'name' => 'Labbaik Chicken Double B',
+                'slug' => 'labbaik-chicken-double-b',
                 'description' => 'Chicken burger + french fries + milky biscoff',
                 'price' => 42000,
                 'stock' => 40,
@@ -33,6 +34,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'Waroeng Steak And Shake Super Box',
+                'slug' => 'waroeng-steak-and-shake-super-box',
                 'description' => '3 pcs chicken steak, 2 pcs tenderloin steak',
                 'price' => 172000,
                 'stock' => 52,
@@ -43,6 +45,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'HokBen Fried Chicken 1 pc + Hoka Hemat',
+                'slug' => 'hokben-fried-chicken-1-pc-+-hoka-hemat',
                 'description' => '1 porsi paket HokBen fried chicken 1 pc + 1 porsi hoka',
                 'price' => 71000,
                 'stock' => 34,
@@ -52,17 +55,8 @@ class ProductTableSeeder extends Seeder
                 'updated_at' => $currentDateTime,
             ],
             [
-                'name' => 'HokBen Fried Chicken 1 pc + Hoka Hemat',
-                'description' => '1 porsi paket HokBen fried chicken 1 pc + 1 porsi hoka',
-                'price' => 71000,
-                'stock' => 27,
-                'brand' => 'HokBen',
-                'image_url' => 'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/cdd99d40-4c70-48fc-b43f-dd2a8b106bbc_menu-item-image_1722443431917.jpg?auto=format',
-                'created_at' => $currentDateTime,
-                'updated_at' => $currentDateTime,
-            ],
-            [
                 'name' => 'Warung Suroboyo Bebek Goreng Krengseng Tanpa Nasi',
+                'slug' => 'warung-suroboyo-bebek-goreng-krengseng-tanpa-nasi',
                 'description' => 'Bebek goreng yang dilumuri dengan bumbu krengseng',
                 'price' => 43750,
                 'stock' => 64,
@@ -73,6 +67,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'Pizza Hut Buy 1 Get 1 Melts Pizza',
+                'slug' => 'pizza-hut-buy-1-get-1-melts-pizza',
                 'description' => 'Beli 1 Gratis 1 Pilih Topping Melts Pizza Favourite kamu',
                 'price' => 60000,
                 'stock' => 25,
@@ -83,6 +78,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'Gokana Ramen & Teppan Rame 2',
+                'slug' => 'gokana-ramen-&-teppan-rame-2',
                 'description' => 'Beef original bento + gokana 1 + chicken original bento',
                 'price' => 135000,
                 'stock' => 51,
