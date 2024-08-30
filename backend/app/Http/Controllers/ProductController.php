@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ResponseHelper;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,9 +41,10 @@ class ProductController extends Controller
                 ResponseHelper::successResponse($formattedProducts, 'Product: Get All Products', 200),
                 200
             );
-        } catch (ModelNotFoundException $e) {
+        } catch (\Exception $e) {
+            // Handle all other exceptions
             return response()->json(
-                ResponseHelper::errorResponse(ResponseHelper::INTERNAL_SERVER_ERROR_MESSAGE, 500),
+                ResponseHelper::errorResponse($e->getMessage(), 500),
                 500
             );
         }
@@ -93,9 +94,23 @@ class ProductController extends Controller
                 ResponseHelper::successResponse($formattedProducts, 'Product: Create Product', 201),
                 201
             );
-        } catch (ModelNotFoundException $e) {
+        } catch (QueryException $e) {
+            // Handle SQL query exceptions like duplicate entries
+            if ($e->errorInfo[1] === 1062) { // MySQL error code for duplicate entry
+                return response()->json(
+                    ResponseHelper::errorResponse('Duplicate entry detected.', 409),
+                    409
+                );
+            }
+
             return response()->json(
-                ResponseHelper::errorResponse(ResponseHelper::INTERNAL_SERVER_ERROR_MESSAGE, 500),
+                ResponseHelper::errorResponse('Database query error.', 500),
+                500
+            );
+        } catch (\Exception $e) {
+            // Handle all other exceptions
+            return response()->json(
+                ResponseHelper::errorResponse($e->getMessage(), 500),
                 500
             );
         }
@@ -133,9 +148,10 @@ class ProductController extends Controller
                 ResponseHelper::successResponse($formattedProducts, 'Product: Get Product By ID', 200),
                 200
             );
-        } catch (ModelNotFoundException $e) {
+        } catch (\Exception $e) {
+            // Handle all other exceptions
             return response()->json(
-                ResponseHelper::errorResponse(ResponseHelper::INTERNAL_SERVER_ERROR_MESSAGE, 500),
+                ResponseHelper::errorResponse($e->getMessage(), 500),
                 500
             );
         }
@@ -201,9 +217,23 @@ class ProductController extends Controller
                 ResponseHelper::successResponse($formattedProducts, 'Product: Update Product', 200),
                 200
             );
-        } catch (ModelNotFoundException $e) {
+        } catch (QueryException $e) {
+            // Handle SQL query exceptions like duplicate entries
+            if ($e->errorInfo[1] === 1062) { // MySQL error code for duplicate entry
+                return response()->json(
+                    ResponseHelper::errorResponse('Duplicate entry detected.', 409),
+                    409
+                );
+            }
+
             return response()->json(
-                ResponseHelper::errorResponse(ResponseHelper::INTERNAL_SERVER_ERROR_MESSAGE, 500),
+                ResponseHelper::errorResponse('Database query error.', 500),
+                500
+            );
+        } catch (\Exception $e) {
+            // Handle all other exceptions
+            return response()->json(
+                ResponseHelper::errorResponse($e->getMessage(), 500),
                 500
             );
         }
@@ -231,9 +261,10 @@ class ProductController extends Controller
                     200
                 );
             }
-        } catch (ModelNotFoundException $e) {
+        } catch (\Exception $e) {
+            // Handle all other exceptions
             return response()->json(
-                ResponseHelper::errorResponse(ResponseHelper::INTERNAL_SERVER_ERROR_MESSAGE, 500),
+                ResponseHelper::errorResponse($e->getMessage(), 500),
                 500
             );
         }
